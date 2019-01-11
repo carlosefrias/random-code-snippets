@@ -36,3 +36,4 @@ for a in range(1, 2015):
     sum += (x**a + 1/(x**a))**2
 
 print(sum)
+print('End of program')
