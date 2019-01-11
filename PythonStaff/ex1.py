@@ -16,6 +16,8 @@ def cis(phi):
 
 print(pi)
 
+
+#complex number
 w = cis(2 * pi / 2015)
 
 sum = 0
