@@ -18,6 +18,8 @@ def cis(phi):
 
 print(pi)
 
+
+#complex number
 w = cis(2 * pi / 2015)
 
 sum = 0
@@ -37,3 +39,4 @@ for a in range(1, 2015):
 
 print(sum)
 print('End of program')
+
