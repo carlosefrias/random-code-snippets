@@ -28,3 +28,31 @@ cosTheta = np.abs(np.dot(vectorPQ, vectorN)) / (np.linalg.norm(vectorPQ) * np.li
 #Minimum distance
 d = np.linalg.norm(vectorPQ) * cosTheta
 print(d)
+
+#or simply
+d = np.abs(np.dot(vectorPQ, vectorN)) / np.linalg.norm(vectorN)
+print(d)
+
+vectorAC = C - A
+num = np.dot(vectorAC, vectorAB) * np.dot(vectorAB, vectorCD) - np.dot(vectorAC, vectorCD) * np.linalg.norm(vectorAB) ** 2 
+denom = (np.linalg.norm(vectorCD) * np.linalg.norm(vectorAB)) ** 2 - np.dot(vectorAB, vectorCD) ** 2
+
+t = num / denom
+
+num = np.dot(vectorAC, vectorAB) + t * np.dot(vectorCD, vectorAB)
+denom = np.linalg.norm(vectorAB) ** 2
+
+k = num / denom
+
+#Point on line AB closest to line CD
+P = A + k * vectorAB
+print(P)
+#Point on line CD cloesest to line AB
+R = C + t * vectorCD
+print(R)
+
+#Minimum distance
+vectorPR = R -P
+d = np.linalg.norm(vectorPR)
+print(d)
+    
