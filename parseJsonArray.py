@@ -1,26 +1,32 @@
 jsonArray = "[{\"playerId\": \"1\",\"playerLoc\": \"Powai\"},{\"playerId\": \"2\",\"playerLoc\":\"Andheri\"},{\"playerId\": \"3\",\"playerLoc\": \"Churchgate\"}]"
 
 jsonList = [] #List
-newJson = False
-endJson = False
 json = ""
 for i in range(len(jsonArray)):
+    json += jsonArray[i]
     if(jsonArray[i] == '{'):
-        newJson = True
-    else:
-        newJson = False
+        json = jsonArray[i] 
     if(jsonArray[i] == '}'):
-        endJson = True
-    else:
-        endJson = False
-    if(newJson):
-        json = ""
-    if(not endJson):
-        json += jsonArray[i]
-    if(endJson):
-        json += jsonArray[i]
         jsonList.append(json)
-        json = ""
+# C# code version
+# public List<string> Parse(string jsonArray)
+# {
+#     List<string> jsonList = new List<string>();
+#     string json = "";
+#     for(int i = 0; i < jsonArray.Length; ++i)
+#     {
+#         json += jsonArray[i];
+#         if(jsonArray[i] == '{')
+#         {
+#             json = jsonArray[i];
+#         }
+#         if(jsonArray[i] == '}')
+#         {
+#             jsonList.Add(json);
+#         }
+#     }
+#     return jsonList;
+# }
 
 print(jsonList[0])
 print(jsonList[1])
