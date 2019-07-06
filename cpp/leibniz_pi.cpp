@@ -38,4 +38,5 @@ int main()
 {
     double pi_approx = calculate_pi();
     cout << "pi is approximately " << pi_approx << endl;
+    return 0;
 }
