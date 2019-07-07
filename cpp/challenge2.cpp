@@ -23,15 +23,10 @@ bool is_prime(long &number)
     return is_prime;
 }
 
-typedef struct dual_prime
+vector<long> list_dual_less_than(long &number)
 {
-    long prime1;
-    long prime2;
-} DualPrime;
-
-vector<DualPrime> list_dual_less_than(long &number)
-{
-    vector<DualPrime> v = {};
+    vector<long> v = {};
+    int previous = 0;
     for(long i = 2; i <= number; i++)
     {
         if(is_prime(i))
@@ -39,20 +34,14 @@ vector<DualPrime> list_dual_less_than(long &number)
             long next = i + 2;
             if(is_prime(next))
             {
-                DualPrime dp = {i, i+2};
-                v.push_back(dp);
+                if(i != previous)
+                    v.push_back(i);
+                v.push_back(next);
+                previous = next;
             }
         }
     }
     return v;
-}
-
-void display_vector_dual_primes(vector<DualPrime> &v)
-{
-    for(DualPrime dp : v)
-    {
-        cout << "dual primes: " << dp.prime1 << " and " << dp.prime2 << endl;
-    }
 }
 
 void display_vector(vector<long> &v)
@@ -63,16 +52,8 @@ void display_vector(vector<long> &v)
     }
 }
 
-vector<long> non_dual_primes(vector<DualPrime> &v, long &number)
+vector<long> non_dual_primes(vector<long> &dual_primes, long &number)
 {
-    vector<long> dual_primes = {};
-    for(DualPrime dp : v)
-    {
-        dual_primes.push_back(dp.prime1);
-        dual_primes.push_back(dp.prime2);
-    }
-    cout << "dual primes: "<< endl;
-    display_vector(dual_primes);
     vector<long> non_dual_primes = {};
     int pos = 0;
     for(long i = 2; i <= number; i++)
@@ -93,9 +74,10 @@ vector<long> non_dual_primes(vector<DualPrime> &v, long &number)
 int main()
 {
     long number = 1024;
-    vector<DualPrime> vec = list_dual_less_than(number);
-    //display_vector_dual_primes(vec);
+    vector<long> vec = list_dual_less_than(number);
     vector<long> ndp = non_dual_primes(vec, number);
+    cout << "dual primes: " << endl;
+    display_vector(vec);
     cout << "Non dual primes: " << endl;
     display_vector(ndp);
 }
