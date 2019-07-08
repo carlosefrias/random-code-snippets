@@ -72,12 +72,30 @@ vector<long> non_dual_primes(vector<long> &dual_primes, long &number)
 }
 
 int main()
-{
-    long number = 1024;
-    vector<long> vec = list_dual_less_than(number);
-    vector<long> ndp = non_dual_primes(vec, number);
-    cout << "dual primes: " << endl;
-    display_vector(vec);
-    cout << "Non dual primes: " << endl;
-    display_vector(ndp);
+{ 
+    long number = 1;
+    while(number != 0)
+    {
+        cout << "To terminate the program, please insert the number 0" << endl;
+        cout << "This program calulates all dual primes that are inferior or equal to a given number" << endl;
+        cout << "Please insert a positive whole number bigger than 1" << endl;
+        cin >> number;
+        if(number == 0)
+        {
+            cout << "Exiting the program" << endl;
+            return 0;
+        }
+        if(number <= 1)
+        {
+            cout << "Please insert a positive whole number bigger than 1" << endl;
+            continue;
+        }
+        vector<long> vec = list_dual_less_than(number);
+        vector<long> ndp = non_dual_primes(vec, number);
+        cout << "Dual primes up to " <<  number << endl;
+        display_vector(vec);
+        cout << "Non dual primes up to " << number << endl;
+        display_vector(ndp);
+        return 0;
+    }
 }
