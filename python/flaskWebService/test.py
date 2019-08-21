@@ -6,6 +6,7 @@ img = cv2.imread('kP0u2.png', cv2.IMREAD_UNCHANGED)
 
 img_str = cv2.imencode('.png', img)[1].tostring()
 
+print(type(img_str))
 file = open("endodedImg.txt","w")
 file.write(str(img_str))
 file.close()
