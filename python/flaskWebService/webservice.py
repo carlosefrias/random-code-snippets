@@ -26,4 +26,14 @@ def predict():
 
     return "hello"
 
+@app.route("/predict3", methods=['POST'])
+def predict3():
+    data = request.get_json()
+    values = data['image']
+    print(values)
+    # print(type(values))
+    # a_new = np.array(values)
+    # print(type(a_new))    
+    # cv2.imwrite("result.tif", a_new)
+
 app.run(host="0.0.0.0", port=5000)
