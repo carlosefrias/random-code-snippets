@@ -23,21 +23,22 @@ public class RValCalculator : IRValCalculator
         var (a, b) = GenerateAbList(rvalues);
 
         // calculate the angle between all possible <001> normals for both A and B grains
-        var initialAngles = new List<double>();
-        var tags = new List<DenseVector[]>();
-
-        foreach ( var angleA in a )
-        {
-            foreach ( var angleB in b )
+        // and find the minimum rotation along with the locations of these components in the vectors
+        var angleTagPair = (from angleA in a
+            from angleB in b
+            let angleBetweenThem = Angle(angleA, angleB)
+            where !double.IsNaN(angleBetweenThem) && Math.Abs(angleBetweenThem) > Tolerance
+            select new
             {
-                initialAngles.Add( Angle( angleA, angleB ) );
-                tags.Add( new[] { angleA, angleB } );
-            }
-        }
-
-        // find the minimum rotation along with the locations of these components in the vectors
-        var (angle, minAxes) = MinimumCalcNonZero( initialAngles, tags );
-        Console.WriteLine($"angle: {angle}\nminAxes: {minAxes[0]}");
+                initialAngle = angleBetweenThem,
+                tag = new[] {angleA, angleB}
+            })
+            .OrderBy(val => val.initialAngle)
+            .FirstOrDefault();
+        if (angleTagPair == null)
+            return 0;
+        var angle = angleTagPair.initialAngle;
+        var minAxes = angleTagPair.tag;
         
         if ( Math.Abs(angle) < Tolerance || Math.Abs(angle - Math.PI / 2) < Tolerance )
         {
@@ -57,8 +58,9 @@ public class RValCalculator : IRValCalculator
         // Repeat procedure using the new orientation of grain B to calculate tau
         var (tauAngles, tauTags) = GenerateTauAngles( a, bRotated );
         Console.WriteLine($"tauAngles[0]: {tauAngles[0]}\ntauTags[0]: {tauTags[0]}");
+        
         // find the minimum rotation along with the locations of these components in the vectors
-        var (d, _) = MinimumCalcNonZero( tauAngles, tauTags );
+        var d = tauAngles.Where(t => !double.IsNaN(t) && Math.Abs(t) > Tolerance ).OrderBy(t => t).FirstOrDefault();
         Console.WriteLine($"d: {d}");
         
         if ( Math.Abs(d) < Tolerance || Math.Abs(d - Math.PI / 2) < Tolerance )
