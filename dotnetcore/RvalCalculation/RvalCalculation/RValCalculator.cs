@@ -11,7 +11,7 @@ public class RValCalculator : IRValCalculator
     {
         DenseVector.OfArray(new[] { 1.0, 0.0, 0.0 }),
         DenseVector.OfArray(new[] { 0.0, 1.0, 0.0 }),
-        DenseVector.OfArray(new[] { 1.0, 0.0, 1.0 }),
+        DenseVector.OfArray(new[] { 1.0, 0.0, 0.0 }),
         DenseVector.OfArray(new[] { -1.0, 0.0, 0.0 }),
         DenseVector.OfArray(new[] { 0.0, -1.0, 0.0 }),
         DenseVector.OfArray(new[] { 0.0, 0.0, -1.0 }),
@@ -36,8 +36,8 @@ public class RValCalculator : IRValCalculator
         var rotMatA = RotationMatrix( psiA1, psiA2, psiA3 );
         var rotMatB = RotationMatrix( psiB1, psiB2, psiB3 );
         
-        var a = SurfaceNormals.Select(sn => rotMatA * sn);
-        var b = SurfaceNormals.Select(sn => rotMatB * sn);
+        var a = SurfaceNormals.Select(sn => rotMatA * sn).ToList();
+        var b = SurfaceNormals.Select(sn => rotMatB * sn).ToList();
         
         // calculate the angle between all possible <001> normals for both A and B grains
         // and find the minimum rotation along with the locations of these components in the vectors
@@ -79,10 +79,10 @@ public class RValCalculator : IRValCalculator
         
         if ( Math.Abs(tau) < Tolerance || Math.Abs(Math.Round(tau, 8) - Math.Round(Math.PI / 2)) < Tolerance )
         {
-            return 180 / Math.PI * RValCal( 0, angle );
+            return RValCal(0, angle).ToDegrees();
         }
 
-        return 180 / Math.PI * RValCal( tau, angle );
+        return RValCal(tau, angle).ToDegrees();
     }
 
     /// <summary>
@@ -200,6 +200,11 @@ public static class AngleConverter
     public static double ToRadians(this double angleInDegrees)
     {
         // Angle in degrees
-        return (angleInDegrees * Math.PI) / 180.0;
+        return angleInDegrees * Math.PI / 180.0;
+    }
+
+    public static double ToDegrees(this double angleInRadians)
+    {
+        return angleInRadians * 180.0 / Math.PI;
     }
 }

@@ -7,7 +7,7 @@ namespace RvalCalculation
     {
         static void Main(string[] args)
         {
-            var phi1A = 2.82;
+            var phi1A = 2.4;
             var phi2A = 4.07; 
             var phi3A = 2.45;
             
