@@ -11,7 +11,7 @@ public class RValCalculator : IRValCalculator
     {
         DenseVector.OfArray(new[] { 1.0, 0.0, 0.0 }),
         DenseVector.OfArray(new[] { 0.0, 1.0, 0.0 }),
-        DenseVector.OfArray(new[] { 1.0, 0.0, 0.0 }),
+        DenseVector.OfArray(new[] { 0.0, 0.0, 1.0 }),
         DenseVector.OfArray(new[] { -1.0, 0.0, 0.0 }),
         DenseVector.OfArray(new[] { 0.0, -1.0, 0.0 }),
         DenseVector.OfArray(new[] { 0.0, 0.0, -1.0 }),
