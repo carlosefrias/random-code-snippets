@@ -14,10 +14,10 @@ def get_change(total_amount):
     for idx in range(len(coin_values)):
         value = coin_values[idx]
         if total_amount >= value:
-            q, r = divmod(total_amount, value)
+            q, _ = divmod(total_amount, value)
             n_coins = q if number_coins[idx] >= q else number_coins[idx]
-            total_amount = r
-            coins.append((value, n_coins))
+            total_amount -= n_coins * value 
+            coins.append((n_coins, value))
             number_coins[idx] -= n_coins
         if total_amount == 0:
             break
@@ -25,6 +25,6 @@ def get_change(total_amount):
         return "not enough money"
     return coins
 
-print(get_change(897))
+print(get_change(1234))
 
 print(f"available money: {get_available_amount()}")

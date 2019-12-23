@@ -77,7 +77,7 @@ int main()
     while(number != 0)
     {
         cout << "To terminate the program, please insert the number 0" << endl;
-        cout << "This program calulates all dual primes that are inferior or equal to a given number" << endl;
+        cout << "This program calculates all dual primes that are inferior or equal to a given number" << endl;
         cout << "Please insert a positive whole number bigger than 1" << endl;
         cin >> number;
         if(number == 0)

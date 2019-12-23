@@ -2,8 +2,7 @@
 // Using the Leibniz formula for pi
 // 1-1/3+1/5-1/7+1/9 - ... = pi / 4
 
-#include <iostream>
-#define MAX_ITERATIONS 1000000
+#include <iostream>o
 using namespace std;
 
 bool is_signal_plus(int idx)
