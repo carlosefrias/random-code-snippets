@@ -57,7 +57,6 @@ public class EncryptDecrypt {
 
     public static void main(String[] args){
         String encrypted = Encrypt("maravilha");
-        // Decrypt(encrypted);
         System.out.println(Decrypt(encrypted));
     }
 }
