@@ -11,7 +11,7 @@ public class ArrayIndexAndElementEquility{
     if(val > midIndx){
         return binarySearch(arr, start, midIndx -1);
     }else if(val < midIndx){
-        return binarySearch(arr, midIndx+1, end);
+        return binarySearch(arr, midIndx + 1, end);
     }
     else{
         return binarySearch(arr, start, midIndx);
@@ -19,13 +19,13 @@ public class ArrayIndexAndElementEquility{
   }
   
   static int indexEqualsValueSearch(int[] arr) {
-    if(arr.length>100)
+    if(arr.length == 0 || arr.length>100)
         return -1;
     return binarySearch(arr, 0, arr.length-1);
   }
 
   public static void main(String[] args) {
-    int[] arr=new int[]{-2,-1,1,3,10};
+    int[] arr=new int[]{-2,-1,1,2,4};
     // int[] arr=new int[]{0,1,2,3,4};
     System.out.println(indexEqualsValueSearch(arr));
   }
