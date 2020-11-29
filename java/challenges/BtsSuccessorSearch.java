@@ -40,17 +40,36 @@ public class BtsSuccessorSearch {
 
     static class BinarySearchTree{
         Node root;
+  
+        /* Given a non-empty binary search  
+        tree, return the minimum data   
+        value found in that tree. Note that  
+        the entire tree does not need 
+        to be searched. */
+        Node minValue(Node node) 
+        { 
+            Node current = node; 
+    
+            /* loop down to find the leftmost leaf */
+            while (current.left != null) { 
+                current = current.left; 
+            } 
+            return current; 
+        } 
+        
         Node findInOrderSuccessor(Node inputNode){
-            int target = inputNode.key;
-            Node currentNode = inputNode;
-            while(currentNode != null){
-                if(currentNode.right != null){
-                    currentNode = currentNode.right;
-                }
-                if(currentNode.key> target)
-                    return currentNode;
-            }
-            return null;
+            // step 1 of the above algorithm 
+            if (inputNode.right != null) { 
+                return minValue(inputNode.right); 
+            } 
+    
+            // step 2 of the above algorithm 
+            Node currentNode = inputNode.parent; 
+            while (currentNode != null && inputNode == currentNode.right) { 
+                inputNode = currentNode; 
+                currentNode = currentNode.parent; 
+            } 
+            return currentNode; 
         }
 
         void insert(int key){
@@ -109,7 +128,7 @@ public class BtsSuccessorSearch {
             tree.insert(11);
             tree.insert(14);
 
-            test = tree.getNodeByKey(25);
+            test = tree.getNodeByKey(14);
             succ = tree.findInOrderSuccessor(test);
             if(succ != null){
                 System.out.println("InOrder successor is: " + succ.key);
