@@ -1,4 +1,4 @@
-import itertools
+import itertools 
 
 def opSymbl(operation):
     if operation == "sum":
@@ -23,7 +23,7 @@ def operate(val1, val2, operation):
         return val1 - val2
     if operation == "mult":
         return val1 * val2
-    if operation == "div":
+    if operation == "div" and not val2 == 0:
         return val1 / val2
 
 def calculateSequential(values, operations):
@@ -45,26 +45,24 @@ def solve(a,b,c,d):
     # Obter todas as escolhas de tres operacoes sequenciais (podendo haver repeticao da operacao)
     op = ["sum", "dif", "mult", "div"]
     listOpSeq = [p for p in itertools.product(op, repeat=3)]
-    plusMinus = ["sum", "dif"]
-    # Obter as escolhas de operacoes do tipo (a+-b)x/(c+-d)
-    listOpInPartsPM = [p for p in itertools.product(plusMinus, repeat=2)]
-    listOpInParts = [(p[0], 'mult', p[1]) for p in listOpInPartsPM]
-    listOpInParts1 = [(p[0], 'div', p[1]) for p in listOpInPartsPM]
-    listOpInParts.append(listOpInParts1)
     for permutation in permutations:
         for opSeq in listOpSeq:
-            result = calculateSequential(permutation, opSeq)
-            if result == 24:
+            # Calcular os resultados operando em sequencia ((a op b) op c) op d (op pode ser +, -, x ou /)
+            resultSeq = calculateSequential(permutation, opSeq)
+            if resultSeq == 24:
                 solutions.append(formatSolution(permutation, opSeq, True))
-        for opSeq in listOpInParts:
+            # Calcular os resultados operando em partes (a op b) op (c op d) (op pode ser +, -, x ou /)
             result = calculateParted(permutation, opSeq)
             if result == 24:
                 solutions.append(formatSolution(permutation, opSeq, False))
-    return set(solutions)
+    if(len(solutions) == 0):
+        return "Sem solução"
+    else:
+        return set(solutions)
 
 
 # Testar a função para 4 valores
-solutions = solve(1,4,3,3)
+solutions = solve(1,11,11,13)
 
 # Imprimir solucoes
 print(solutions)

@@ -30,6 +30,7 @@ def solve(a,b,c,d):
         result = calculate(values, operations)
         # verifica se dá 24
         if(result == 24):
+            print(count)
             return values, operations
         # se o número de tentativas ultrapassa as 100 000, considerar que não existe solução
         count += 1
@@ -37,7 +38,7 @@ def solve(a,b,c,d):
             return values, []
 
 # Testar a função para 4 valores
-v, op = solve(9,8,1,2)
+v, op = solve(1,11,11,13)
 # Imprimir a ordem dos valores
 print(v)
 # Imprimir a ordem das operações
