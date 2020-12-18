@@ -42,16 +42,16 @@ def solve(a,b,c,d):
     solutions = []
     # Obter todas as permutacoes dos operandos
     permutations = list(itertools.permutations(values))
-    # Obter todas as escolhas de tres operacoes sequenciais (podendo haver repeticao da operacao)
+    # Obter todas as escolhas de tres operacoes (podendo haver repeticao da operacao)
     op = ["sum", "dif", "mult", "div"]
     listOpSeq = [p for p in itertools.product(op, repeat=3)]
     for permutation in permutations:
         for opSeq in listOpSeq:
-            # Calcular os resultados operando em sequencia ((a op b) op c) op d (op pode ser +, -, x ou /)
+            # Calcular o resultado operando em sequencia ((a op b) op c) op d (op pode ser +, -, x ou /)
             resultSeq = calculateSequential(permutation, opSeq)
             if resultSeq == 24:
                 solutions.append(formatSolution(permutation, opSeq, True))
-            # Calcular os resultados operando em partes (a op b) op (c op d) (op pode ser +, -, x ou /)
+            # Calcular o resultado operando em partes (a op b) op (c op d) (op pode ser +, -, x ou /)
             result = calculateParted(permutation, opSeq)
             if result == 24:
                 solutions.append(formatSolution(permutation, opSeq, False))
@@ -62,7 +62,7 @@ def solve(a,b,c,d):
 
 
 # Testar a função para 4 valores
-solutions = solve(1,11,11,13)
+solutions = solve(12,7,8,3)
 
 # Imprimir solucoes
 print(solutions)
