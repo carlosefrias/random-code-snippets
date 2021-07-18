@@ -66,10 +66,9 @@ int main()
 	std::vector<std::vector<int>> combin = combinations(10, 6);
 	for (std::vector<int> elemn : combin)
 	{
-		auto numberCres = calc_number_cres(elemn);
-		if(numberCres > 99999)
+		if(elemn.front() > 0)
 		{
-			listaC.push_back(numberCres);
+			listaC.push_back(calc_number_cres(elemn));
 		}
 		listaD.push_back(calc_number_decres(elemn));
 	}
