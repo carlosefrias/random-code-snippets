@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.31105.61
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CresDecres", "CresDecres\CresDecres.vcxproj", "{040C7029-6EBC-4BD5-BA61-029664C6C42A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CresDecresCore", "CresDecresCore\CresDecresCore.csproj", "{D217EB3D-C73E-43D9-9A23-DE9637B7C15C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CresDecresCore", "CresDecresCore\CresDecresCore.csproj", "{D217EB3D-C73E-43D9-9A23-DE9637B7C15C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CresDecresCPF", "CresDecresCPF\CresDecresCPF.vcxproj", "{7E134DCC-C6D3-4116-B71E-05FB3C5811C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,16 @@ Global
 		{D217EB3D-C73E-43D9-9A23-DE9637B7C15C}.Release|x64.Build.0 = Release|Any CPU
 		{D217EB3D-C73E-43D9-9A23-DE9637B7C15C}.Release|x86.ActiveCfg = Release|Any CPU
 		{D217EB3D-C73E-43D9-9A23-DE9637B7C15C}.Release|x86.Build.0 = Release|Any CPU
+		{7E134DCC-C6D3-4116-B71E-05FB3C5811C8}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{7E134DCC-C6D3-4116-B71E-05FB3C5811C8}.Debug|x64.ActiveCfg = Debug|x64
+		{7E134DCC-C6D3-4116-B71E-05FB3C5811C8}.Debug|x64.Build.0 = Debug|x64
+		{7E134DCC-C6D3-4116-B71E-05FB3C5811C8}.Debug|x86.ActiveCfg = Debug|Win32
+		{7E134DCC-C6D3-4116-B71E-05FB3C5811C8}.Debug|x86.Build.0 = Debug|Win32
+		{7E134DCC-C6D3-4116-B71E-05FB3C5811C8}.Release|Any CPU.ActiveCfg = Release|Win32
+		{7E134DCC-C6D3-4116-B71E-05FB3C5811C8}.Release|x64.ActiveCfg = Release|x64
+		{7E134DCC-C6D3-4116-B71E-05FB3C5811C8}.Release|x64.Build.0 = Release|x64
+		{7E134DCC-C6D3-4116-B71E-05FB3C5811C8}.Release|x86.ActiveCfg = Release|Win32
+		{7E134DCC-C6D3-4116-B71E-05FB3C5811C8}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
